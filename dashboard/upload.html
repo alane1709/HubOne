@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataValid — Upload & Validate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --card-hover: #26334a;
+  --border: #334155;
+  --accent: #3b82f6;
+  --accent2: #8b5cf6;
+  --accent-g: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --err: #ef4444;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --hint: #475569;
+  --sidebar: 240px;
+  --f: 'Inter','Segoe UI',system-ui,sans-serif;
+  --r: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--f); font-size: 14px; display: flex; min-height: 100vh; }
+
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--hint); }
+
+/* ── Sidebar ── */
+.sidebar { width: var(--sidebar); background: var(--card); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top:0; left:0; height: 100vh; z-index: 100; }
+.sidebar-logo { padding: 24px 22px 20px; border-bottom: 1px solid var(--border); }
+.sidebar-logo .name { font-size: 18px; font-weight: 800; letter-spacing: -.4px; }
+.sidebar-logo .name em { background: var(--accent-g); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-style: normal; }
+.sidebar-logo .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.nav { padding: 14px 12px; flex:1; display:flex; flex-direction:column; gap:3px; }
+.nav-item { display: flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: var(--r); cursor: pointer; color: var(--muted); font-size: 13px; font-weight: 500; transition: all .15s; border: none; background: none; width: 100%; text-align: left; text-decoration: none; }
+.nav-item:hover { background: rgba(255,255,255,.06); color: var(--text); }
+.nav-item.active { background: rgba(59,130,246,.15); color: var(--accent); }
+.nav-item .ico { font-size: 17px; width:22px; text-align:center; flex-shrink:0; }
+.nav-item .label { flex:1; }
+.sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--hint); }
+.sidebar-footer .api-dot { width:7px; height:7px; border-radius:50%; background: var(--ok); display:inline-block; margin-right:5px; animation: pulse 2s infinite; vertical-align: middle; }
+.sidebar-footer .api-dot.off { background: var(--err); animation:none; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── Main ── */
+.main { margin-left: var(--sidebar); flex:1; display:flex; flex-direction:column; min-height:100vh; }
+.topbar { background: rgba(30,41,59,.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 28px; height: 60px; display: flex; align-items:center; justify-content:space-between; position: sticky; top: 0; z-index: 99; }
+.topbar-title { font-size: 15px; font-weight: 700; }
+.topbar-right { display:flex; align-items:center; gap:12px; font-size:12px; }
+.content { padding: 24px 28px; flex:1; }
+
+/* ── Card ── */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 22px; transition: border-color .2s; }
+.card:hover { border-color: var(--hint); }
+.card-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+
+/* ── Buttons ── */
+.btn { padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--f); display: inline-flex; align-items:center; gap:7px; transition: all .15s; }
+.btn-p { background: var(--accent); color: #fff; }
+.btn-p:hover { background: #2563eb; }
+.btn-p:disabled { opacity: .5; cursor:not-allowed; }
+.btn-o { background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--muted); }
+.btn-o:hover { border-color: var(--accent); color: var(--accent); background: rgba(59,130,246,.08); }
+.btn-success { background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3); color: var(--ok); }
+.btn-success:hover { background: rgba(34,197,94,.2); }
+.btn-danger { background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.3); color: var(--err); }
+.btn-danger:hover { background: rgba(239,68,68,.2); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 7px; }
+
+/* ── Form Elements ── */
+.form-row { display:grid; gap:14px; margin-bottom:14px; }
+.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.field label { display:block; font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; margin-bottom:5px; }
+.field input, .field select, .field textarea { width:100%; background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 9px 12px; color: #e2e8f0; font-family: var(--f); font-size: 13px; outline: none; transition: border-color .15s; }
+.field input:focus, .field select:focus { border-color: var(--accent); }
+.field input::placeholder { color: var(--hint); }
+
+/* ── Drop Zone ── */
+.drop-zone { border: 2px dashed var(--border); border-radius: var(--r); padding: 40px; text-align: center; cursor: pointer; transition: all .2s; background: rgba(255,255,255,.03); }
+.drop-zone:hover, .drop-zone.over { border-color: #6366f1; background: rgba(99,102,241,.08); }
+.drop-zone .dz-ico { font-size: 48px; margin-bottom: 12px; line-height: 1; }
+.drop-zone h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.drop-zone p { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+
+/* ── Table ── */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r); }
+table { width:100%; border-collapse: collapse; }
+thead th { background: rgba(255,255,255,.04); padding: 10px 13px; font-size: 11px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--border); white-space: nowrap; text-align: left; }
+tbody td { padding: 11px 13px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: top; word-break: break-word; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: rgba(255,255,255,.03); }
+
+/* ── Badge ── */
+.badge { display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border-radius:99px; font-size:11px; font-weight:600; white-space:nowrap; }
+.badge-err { background: rgba(239,68,68,.15); color: var(--err); border: 1px solid rgba(239,68,68,.3); }
+.badge-warn { background: rgba(245,158,11,.15); color: var(--warn); border: 1px solid rgba(245,158,11,.3); }
+.badge-ok { background: rgba(34,197,94,.15); color: var(--ok); border: 1px solid rgba(34,197,94,.3); }
+.badge-info { background: rgba(59,130,246,.15); color: var(--accent); border: 1px solid rgba(59,130,246,.3); }
+
+/* ── Status Banner ── */
+.sb-banner { border-radius: var(--r); padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+.sb-banner.pass { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25); }
+.sb-banner.warning { background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.25); }
+.sb-banner.fail { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.25); }
+.sb-banner .st { font-size: 18px; font-weight: 800; }
+.sb-banner.pass .st { color: var(--ok); }
+.sb-banner.warning .st { color: var(--warn); }
+.sb-banner.fail .st { color: var(--err); }
+
+/* ── Config rows ── */
+.cfg-row { align-items:center; padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.cfg-row:hover { background: rgba(255,255,255,.03); }
+
+/* ── Filter & Tabs ── */
+.filter-bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+.search-box { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 8px 13px; color: #e2e8f0; font-family: var(--f); font-size: 13px; outline: none; width: 220px; transition: border-color .2s; }
+.search-box:focus { border-color: var(--accent); }
+.search-box::placeholder { color: var(--hint); }
+.ftab { padding: 6px 13px; border-radius: 7px; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-family: var(--f); font-weight: 500; transition: all .15s; }
+.ftab:hover { border-color: var(--accent); color: var(--accent); }
+.ftab.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── Pagination ── */
+.pg { display:flex; gap:5px; align-items:center; margin-top:14px; justify-content:flex-end; }
+.pgb { padding: 5px 11px; border-radius: 6px; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-family: var(--f); font-size: 12px; cursor: pointer; font-weight: 500; transition: all .15s; }
+.pgb:hover, .pgb.on { border-color: var(--accent); color: var(--accent); background: rgba(59,130,246,.08); }
+.pg-info { font-size: 12px; color: var(--muted); margin-right: 4px; }
+
+/* ── Message ── */
+.msg-short { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; color: var(--muted); }
+.msg-full { display:none; color: var(--muted); white-space: pre-wrap; }
+.msg-toggle { font-size: 11px; color: var(--accent); cursor:pointer; font-weight:600; background:none; border:none; padding:2px 0; font-family: var(--f); }
+
+/* ── Loading ── */
+.ld { display:none; text-align:center; padding:32px; color: var(--muted); }
+.ld.show { display:block; }
+.spin { width:28px; height:28px; border-radius:50%; border:3px solid var(--border); border-top-color: var(--accent); animation:spin .7s linear infinite; margin:0 auto 12px; }
+@keyframes spin { to { transform: rotate(360deg) } }
+
+/* ── Empty ── */
+.empty { text-align:center; padding:40px; color: var(--muted); font-size:13px; }
+.empty-ico { font-size:40px; margin-bottom:8px; opacity:.5; }
+
+/* ── Modal ── */
+.modal-overlay { display:none; position:fixed; inset:0; background: rgba(0,0,0,.5); z-index:200; align-items:center; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 500px; max-width:90vw; max-height:85vh; overflow-y:auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+.modal-title { font-size: 16px; font-weight: 700; }
+.modal-close { width:30px; height:30px; border:none; background: rgba(255,255,255,.08); border-radius:6px; cursor:pointer; font-size:16px; color: var(--text); }
+.modal-close:hover { background: rgba(255,255,255,.14); }
+.modal-footer { display:flex; gap:8px; justify-content:flex-end; margin-top:20px; padding-top:16px; border-top:1px solid var(--border); }
+
+/* ── Tabs ── */
+.tab-btn { padding:8px 16px; border:none; background:none; cursor:pointer; font-size:13px; font-weight:500; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-2px; font-family:var(--f); transition:all .15s; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+/* ── Toast ── */
+.toast { position:fixed; bottom:24px; right:24px; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 18px; font-size:13px; z-index:9999; max-width:360px; box-shadow:0 8px 24px rgba(0,0,0,.3); transform:translateY(80px); opacity:0; transition:all .3s ease; }
+.toast.show { transform:translateY(0); opacity:1; }
+.toast.ok { border-color: var(--ok); }
+.toast.err { border-color: var(--err); }
+
+/* ── Input / Select ── */
+.inp { background:#1e293b; border:1px solid #334155; border-radius:6px; padding:6px 8px; font-size:12px; font-family:var(--f); color:#e2e8f0; outline:none; width:100%; box-sizing:border-box; transition:border-color .15s; }
+.inp:focus { border-color: var(--accent); }
+select { -webkit-appearance:auto; -moz-appearance:auto; appearance:auto; padding-right:28px !important; }
+.rr-select { -webkit-appearance:auto; appearance:auto; padding-right:28px !important; }
+
+/* ── Custom Dropdown ── */
+.cdd {
+  position: relative;
+  display: block;
+}
+.cdd-trig {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: #1e293b;
+  border: 1.5px solid #334155;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-family: var(--f);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  transition: border-color .2s, box-shadow .2s;
+  user-select: none;
+}
+.cdd-trig:hover { border-color: #475569; }
+.cdd-trig.open,
+.cdd-trig:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.2); }
+.cdd-trig .dd-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cdd-trig .dd-icon { font-size: 10px; color: #94a3b8; flex-shrink: 0; transition: transform .2s; }
+.cdd-trig.open .dd-icon { transform: rotate(180deg); }
+.cdd-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.45);
+  z-index: 999;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  max-height: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, max-height .25s ease;
+}
+.cdd-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 320px;
+  pointer-events: auto;
+}
+.cdd-item {
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  font-family: var(--f);
+  border-radius: 8px;
+  margin: 3px 5px;
+}
+.cdd-item:hover { background: #334155; color: #fff; }
+.cdd-item.selected { background: rgba(99,102,241,.18); color: #818cf8; font-weight: 600; }
+.cdd-item[data-disabled="true"] { opacity: .4; pointer-events: none; }
+
+/* ── KPI Grid ── */
+.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:20px; }
+.kpi { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:18px 20px; position:relative; overflow:hidden; transition:transform .15s,box-shadow .15s; }
+.kpi:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,.2); border-color:var(--hint); }
+.kpi::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; }
+.kpi.b::after { background:var(--accent); }
+.kpi.v::after { background:var(--accent2); }
+.kpi.g::after { background:var(--ok); }
+.kpi.r::after { background:var(--err); }
+.kpi.a::after { background:var(--warn); }
+.kpi-lbl { font-size:10px; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); margin-bottom:8px; font-weight:600; }
+.kpi-val { font-size:30px; font-weight:800; line-height:1; }
+.kpi.b .kpi-val { color:var(--accent); }
+.kpi.v .kpi-val { color:var(--accent2); }
+.kpi.g .kpi-val { color:var(--ok); }
+.kpi.r .kpi-val { color:var(--err); }
+.kpi.a .kpi-val { color:var(--warn); }
+.kpi-sub { font-size:11px; color:var(--muted); margin-top:5px; }
+
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.chart-wrap { height:220px; position:relative; }
+
+/* ── Offline Banner ── */
+.offline-banner { background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.25); border-radius:10px; padding:14px 18px; margin-bottom:18px; display:none; align-items:center; gap:10px; }
+.offline-banner.show { display:flex; }
+
+/* ── Page ── */
+.page { display:none; }
+.page.active { display:block; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:translateY(0) } }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="name">Data<em>Valid</em> <span style="font-size:10px;background:rgba(34,197,94,.15);color:var(--ok);border-radius:4px;padding:2px 6px;font-weight:600;vertical-align:middle;border:1px solid rgba(34,197,94,.3)">LIVE</span></div>
+    <div class="sub">Connected to Python API</div>
+  </div>
+  <nav class="nav">
+    <a href="dashboard.html" class="nav-item"><span class="ico">📊</span><span class="label">Dashboard</span></a>
+    <a href="upload.html" class="nav-item active"><span class="ico">⬆️</span><span class="label">Upload & Validate</span></a>
+    <a href="config.html" class="nav-item"><span class="ico">⚙️</span><span class="label">Config Manager</span></a>
+    <a href="reports.html" class="nav-item"><span class="ico">📋</span><span class="label">Reports</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <span id="user-info" style="display:block;margin-bottom:4px;font-weight:600;"></span>
+    <span class="api-dot" id="api-dot"></span><span id="api-status">Connecting...</span>
+    <a href="login.html" class="nav-item" style="margin-top:8px;color:var(--err);padding:6px 8px;font-size:12px;"><span class="ico">🚪</span><span class="label">Logout</span></a>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Upload & Validate</div>
+    <div class="topbar-right">
+      <span style="font-size:12px;color:var(--muted)">API:</span>
+      <input id="api-url" style="background:#1e293b;border:1px solid #334155;border-radius:7px;padding:5px 10px;font-size:12px;font-family:var(--f);width:200px;outline:none;color:#e2e8f0;" onchange="setAPI(this.value)" placeholder="http://localhost:8000">
+      <button class="btn btn-o btn-sm" onclick="checkAPI().then(function(ok){if(ok)loadConfigFromAPI();})">🔌 Reconnect</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="offline-banner" id="offline-banner">
+      <span style="font-size:20px">⚠️</span>
+      <div><strong>Không kết nối được API</strong><br><span style="font-size:12px;color:var(--muted)">Kiểm tra server Python đang chạy tại địa chỉ trên</span></div>
+    </div>
+
+    <!-- UPLOAD PAGE -->
+    <div class="page active" id="page-upload">
+      <div style="display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start;margin-bottom:20px;">
+        <div class="card">
+          <div class="card-title">📁 Chọn file</div>
+          <div class="drop-zone" id="dz" ondragover="dov(event)" ondragleave="dlv()" ondrop="ddr(event)" onclick="document.getElementById('fi').click()">
+            <div class="dz-ico">📗</div>
+            <h3 id="dz-name">Kéo thả file .xlsx vào đây</h3>
+            <p>hoặc click để chọn file</p>
+            <button class="btn btn-o btn-sm" onclick="event.stopPropagation();document.getElementById('fi').click()">📁 Chọn file</button>
+          </div>
+          <input type="file" id="fi" accept=".xlsx" style="display:none" onchange="onFileSelect(this)">
+          <div style="margin-top:14px;">
+            <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;">Hoặc nhập đường dẫn file local</div>
+            <input type="text" id="file-path-input" placeholder="C:\Users\...\data.xlsx" style="width:100%;background:#1e293b;border:1.5px solid #334155;border-radius:8px;padding:9px 12px;font-size:13px;font-family:var(--f);color:#e2e8f0;outline:none;" oninput="onPathInput(this.value)">
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">⚙️ Cài đặt validate</div>
+          <div class="form-row">
+            <div class="field"><label>Template</label>
+              <div class="cdd" id="cdd-template">
+                <button class="cdd-trig" id="cdd-template-trig" onclick="toggleDD('template')" type="button">
+                  <span class="dd-label" id="cdd-template-label">Auto Detect</span>
+                  <span class="dd-icon">&#9662;</span>
+                </button>
+                <div class="cdd-menu" id="cdd-template-menu"></div>
+                <input type="hidden" id="up-template" value="">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Phương thức</label>
+              <div class="cdd" id="cdd-method">
+                <button class="cdd-trig" id="cdd-method-trig" onclick="toggleDD('method')" type="button">
+                  <span class="dd-label" id="cdd-method-label">Upload trực tiếp</span>
+                  <span class="dd-icon">&#9662;</span>
+                </button>
+                <div class="cdd-menu" id="cdd-method-menu">
+                  <div class="cdd-item selected" onclick="selectDD('method','upload','Upload trực tiếp')">Upload trực tiếp</div>
+                  <div class="cdd-item" onclick="selectDD('method','path','Dùng đường dẫn local')">Dùng đường dẫn local</div>
+                </div>
+                <input type="hidden" id="up-method" value="upload">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Ghi chú</label><input type="text" id="up-note" placeholder="Mô tả lần validate này..."></div>
+          </div>
+          <button class="btn btn-p" id="btn-validate" onclick="runValidate()" style="width:100%;justify-content:center;" disabled>▶ Chạy Validate (Python Engine)</button>
+          <div class="ld" id="up-ld" style="padding:16px 0;">
+            <div class="spin"></div>
+            <div id="up-ld-txt">Đang gửi lên server...</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="up-results" style="display:none">
+        <div class="sb-banner" id="up-banner">
+          <div><div class="st" id="up-st">—</div><div style="font-size:12px;color:var(--muted);margin-top:2px" id="up-ss">—</div></div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span style="font-size:11px;color:var(--muted)" id="up-output-info"></span>
+            <button class="btn btn-o btn-sm" onclick="resetUpload()">↩ Validate lại</button>
+          </div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:16px;">
+          <div class="kpi b"><div class="kpi-lbl">Score</div><div class="kpi-val" id="r-score">—</div></div>
+          <div class="kpi v"><div class="kpi-lbl">Tổng dòng</div><div class="kpi-val" id="r-rows">—</div></div>
+          <div class="kpi g"><div class="kpi-lbl">Dòng sạch</div><div class="kpi-val" id="r-clean">—</div></div>
+          <div class="kpi r"><div class="kpi-lbl">Dòng lỗi</div><div class="kpi-val" id="r-err">—</div></div>
+          <div class="kpi a"><div class="kpi-lbl">Critical</div><div class="kpi-val" id="r-crit">—</div></div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+            <div class="card-title" id="r-tbl-title" style="margin:0">Chi tiết lỗi</div>
+            <div class="filter-bar" style="margin:0">
+              <input class="search-box" id="r-search" placeholder="🔍 Tìm kiếm..." oninput="filterResults()">
+              <button class="ftab on" onclick="setRFilter('all',this)">Tất cả</button>
+              <button class="ftab" onclick="setRFilter('critical',this)">🔴 Critical</button>
+              <button class="ftab" onclick="setRFilter('warning',this)">🟡 Warning</button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><div id="r-tbl"></div></div>
+          <div class="pg" id="r-pg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Check login
+if(localStorage.getItem('dv_logged_in')!=='true'){
+  window.location.href='login.html';
+}
+
+// Show user info
+var user=localStorage.getItem('dv_user')||'admin';
+document.getElementById('user-info').textContent='User: '+user;
+
+// ════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════
+var API     = localStorage.getItem('dv_api') || 'http://localhost:8000';
+var CONFIG  = { version:'2.0', templates:{} };
+var HISTORY = JSON.parse(localStorage.getItem('dv_history_live')||'[]');
+var CURRENT_PAGE='upload';
+var curTmpl = null;
+var allErrors=[], filteredErrors=[], rFilter='all', rPage=1;
+var pendingFile=null, pendingPath=null;
+var RPAGE=25;
+
+document.getElementById('api-url').value = API;
+
+// ════════════════════════════════════════════════════════
+// API HELPERS
+// ════════════════════════════════════════════════════════
+function checkAPI(){
+  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},3000);
+  return fetch(API+'/',{signal:ctrl.signal})
+    .then(function(r){clearTimeout(timer);setOnline(r.ok);return r.ok;})
+    .catch(function(){clearTimeout(timer);setOnline(false);return false;});
+}
+function setOnline(on){
+  document.getElementById('api-dot').className='api-dot'+(on?'':' off');
+  document.getElementById('api-status').textContent=on?'API Connected':'API Offline';
+  document.getElementById('offline-banner').className='offline-banner'+(on?'':' show');
+}
+function setAPI(url){API=url.trim();localStorage.setItem('dv_api',API);}
+
+// ════════════════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════════════════
+function loadConfigFromAPI(){
+  return fetch(API+'/config')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      CONFIG=normaliseConfig(data);
+      populateTemplateSelects();
+      showToast('Config loaded từ server','ok');
+    })
+    .catch(function(){showToast('Không load được config','err');});
+}
+function normaliseConfig(data){
+  if(data.version==='2.0') return data;
+  var templates={};
+  Object.keys(data).forEach(function(tmpl){
+    if(!Array.isArray(data[tmpl])) return;
+    var columns=[],rules=[],idx=1;
+    data[tmpl].forEach(function(col){
+      columns.push({name:col.column_name||col.name||'',data_type:col.data_type||'text',
+        is_required:!!col.is_required,allow_null_percent:col.allow_null_percent||0});
+      var rt=col.rule_type||'none';
+      if(rt&&rt!=='none'){
+        var scopeMap={unique:'table',regex:'column',range:'column',no_future_date:'column',cross_column:'row',compare:'row'};
+        var colName=col.column_name||col.name||'';
+        var params={};
+        if(rt==='regex') params={pattern:col.rule_detail||''};
+        else if(rt==='range'){var m=(col.rule_detail||'').match(/([><=!]+)\s*([\d.]+)/);if(m)params={operator:m[1],value:parseFloat(m[2])};}
+        else if(rt==='cross_column'||rt==='compare') params={expr:col.rule_detail||''};
+        rules.push({id:tmpl.toLowerCase()+'_r'+idx,type:rt==='cross_column'?'compare':rt,
+          scope:scopeMap[rt]||'column',column:colName,columns:[colName],priority:idx,
+          severity:col.severity||'warning',enabled:true,params:params,message:null});
+        idx++;
+      }
+    });
+    templates[tmpl]={columns:columns,rules:rules};
+  });
+  return{version:'2.0',templates:templates};
+}
+function saveConfigToAPI(){
+  fetch(API+'/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(CONFIG)})
+  .then(function(r){r.ok?showToast('Config đã lưu lên server!','ok'):showToast('Lưu thất bại','err');})
+  .catch(function(){showToast('Không kết nối server','err');});
+}
+function getTemplates(){return CONFIG.templates||{};}
+function getTemplate(name){return(CONFIG.templates||{})[name]||{columns:[],rules:[]};}
+
+function populateTemplateSelects(){
+  var options=[{value:'',label:'Auto Detect'},{value:'__ALL__',label:'⚡ Validate ALL sheets'}];
+  Object.keys(getTemplates()).forEach(function(t){options.push({value:t,label:t});});
+  var current=document.getElementById('up-template')?document.getElementById('up-template').value:'';
+  renderTemplateDD(options,current);
+}
+
+// ════════════════════════════════════════════════════════
+// UPLOAD & VALIDATE
+// ════════════════════════════════════════════════════════
+function dov(e){e.preventDefault();document.getElementById('dz').classList.add('over');}
+function dlv(){document.getElementById('dz').classList.remove('over');}
+function ddr(e){e.preventDefault();dlv();if(e.dataTransfer.files[0])onFileSelect({files:e.dataTransfer.files});}
+function onFileSelect(inp){
+  var f=inp.files[0];if(!f)return;
+  pendingFile=f;pendingPath=null;
+  document.getElementById('dz-name').textContent=f.name;
+  document.getElementById('file-path-input').value='';
+  document.getElementById('file-path-input').parentElement.style.display='none';
+  document.getElementById('dz').style.background='rgba(99,102,241,.08)';
+  document.getElementById('dz').style.borderColor='var(--accent)';
+  document.getElementById('btn-validate').disabled=false;
+  selectDD('method','upload','Upload trực tiếp');
+  showToast('File sẵn sàng: '+f.name,'ok');
+}
+function onPathInput(val){
+  if(!val.trim())return;
+  pendingPath=val.trim();pendingFile=null;
+  var parts=val.split(/[/\\]/);
+  document.getElementById('dz-name').textContent=parts[parts.length-1]||val;
+  document.getElementById('dz').style.background='rgba(99,102,241,.08)';
+  document.getElementById('dz').style.borderColor='var(--accent)';
+  document.getElementById('btn-validate').disabled=false;
+  document.getElementById('up-method').value='path';
+}
+
+function runValidate(){
+  var template=document.getElementById('up-template').value;
+  var method=document.getElementById('up-method').value;
+  var isAll=(template==='__ALL__');
+  if(!pendingFile&&!pendingPath){showToast('Chọn file trước!','err');return;}
+  CURRENT_PAGE='upload';
+  showUpLoading(true,'Đang đăng ký file...');
+  document.getElementById('up-results').style.display='none';
+  var bd=document.getElementById('all-breakdown');if(bd)bd.remove();
+  var uploadTemplate=isAll?'':template;
+  var regPromise;
+  if(method==='path'&&pendingPath){
+    var fd=new FormData();fd.append('file_path',pendingPath);if(uploadTemplate)fd.append('template_name',uploadTemplate);
+    regPromise=fetch(API+'/upload-path',{method:'POST',body:fd}).then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error(e.detail&&e.detail.message?e.detail.message:JSON.stringify(e.detail));});return r.json();});
+  }else{
+    var fd2=new FormData();fd2.append('file',pendingFile);if(uploadTemplate)fd2.append('template_name',uploadTemplate);
+    regPromise=fetch(API+'/upload',{method:'POST',body:fd2}).then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error(e.detail&&e.detail.message?e.detail.message:JSON.stringify(e.detail));});return r.json();});
+  }
+  regPromise.then(function(regData){
+    var savedAs=regData.metadata.saved_as;
+    var origName=regData.metadata.original_name||savedAs;
+    if(isAll){
+      showUpLoading(true,'Đang validate TẤT CẢ sheets...');
+      var vfd=new FormData();vfd.append('saved_as',savedAs);
+      return fetch(API+'/validate-all',{method:'POST',body:vfd})
+        .then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error(e.detail||'Failed');});return r.json();})
+        .then(function(result){showResultsAll(result,origName);});
+    }else{
+      var det=regData.metadata.template;
+      if(regData.auto_detection)showToast('Auto-detect: '+det+' ('+regData.auto_detection.confidence+')','ok');
+      showUpLoading(true,'Đang validate: '+det+'...');
+      var vfd2=new FormData();vfd2.append('saved_as',savedAs);vfd2.append('template_name',det);
+      return fetch(API+'/validate',{method:'POST',body:vfd2})
+        .then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error(e.detail||'Failed');});return r.json();})
+        .then(function(result){showResults(result,origName);});
+    }
+  }).catch(function(err){showToast('Lỗi: '+err.message,'err');showUpLoading(false);});
+}
+
+function _saveHistory(entry){
+  HISTORY.push(entry);
+  try{localStorage.setItem('dv_history_live',JSON.stringify(HISTORY));}catch(e){HISTORY.shift();localStorage.setItem('dv_history_live',JSON.stringify(HISTORY));}
+}
+
+function showResults(data,filename){
+  showUpLoading(false);
+  allErrors=data.errors||[];filteredErrors=allErrors.slice();
+  _saveHistory({id:Date.now(),filename:filename,template:data.template,
+    total_rows:data.total_rows,error_rows:data.error_rows,error_pct:data.error_pct,
+    critical:data.critical,warnings:data.warnings,status:data.status,
+    errors:data.errors,excel_output:data.excel_output||'',created_at:new Date().toLocaleString('vi-VN')});
+  _renderBanner(data.status,data.error_rows+'/'+data.total_rows+' dòng lỗi / '+data.template+' / '+data.error_pct+'%',data.excel_output);
+  document.getElementById('r-score').textContent=Math.max(0,100-data.error_pct).toFixed(0)+'%';
+  document.getElementById('r-rows').textContent=data.total_rows;
+  document.getElementById('r-clean').textContent=data.total_rows-data.error_rows;
+  document.getElementById('r-err').textContent=data.error_rows;
+  document.getElementById('r-crit').textContent=data.critical;
+  document.getElementById('r-tbl-title').textContent='Chi tiết lỗi ('+allErrors.length+' lỗi)';
+  document.getElementById('up-results').style.display='block';
+  rFilter='all';rPage=1;
+  document.querySelectorAll('#page-upload .ftab').forEach(function(t,i){t.classList.toggle('on',i===0);});
+  renderResultTable();
+  setTimeout(function(){document.getElementById('up-results').scrollIntoView({behavior:'smooth'});},100);
+}
+
+function showResultsAll(data,filename){
+  showUpLoading(false);
+  var sheetResults=data.sheet_results||{},sheets=Object.keys(sheetResults);
+  allErrors=[];
+  sheets.forEach(function(t){(sheetResults[t].errors||[]).forEach(function(e){allErrors.push(Object.assign({},e,{_sheet:t}));});});
+  filteredErrors=allErrors.slice();
+  _saveHistory({id:Date.now(),filename:filename,template:'ALL ('+sheets.join(', ')+')',
+    total_rows:data.total_rows,error_rows:data.total_error_rows,error_pct:data.error_pct,
+    critical:data.critical,warnings:data.warnings,status:data.status,
+    errors:allErrors,excel_output:data.excel_output||'',sheet_results:sheetResults,created_at:new Date().toLocaleString('vi-VN')});
+  _renderBanner(data.status,sheets.length+' sheets / '+data.total_error_rows+'/'+data.total_rows+' dòng lỗi / '+data.error_pct+'%',data.excel_output);
+  document.getElementById('r-score').textContent=Math.max(0,100-data.error_pct).toFixed(0)+'%';
+  document.getElementById('r-rows').textContent=data.total_rows;
+  document.getElementById('r-clean').textContent=data.total_rows-(data.total_error_rows||0);
+  document.getElementById('r-err').textContent=data.total_error_rows||0;
+  document.getElementById('r-crit').textContent=data.critical;
+  var bdiv=document.createElement('div');bdiv.id='all-breakdown';bdiv.style.cssText='margin-bottom:14px;border:1px solid var(--border);border-radius:8px;overflow:hidden;';
+  var brows=sheets.map(function(t){
+    var r=sheetResults[t];var cls=r.status==='pass'?'badge-ok':r.status==='fail'?'badge-err':'badge-warn';
+    return '<tr><td style="padding:8px 12px;font-weight:600">'+esc(t)+'</td>'+
+      '<td style="padding:8px 12px;color:var(--muted);font-size:12px">'+esc(r.sheet_name||'')+'</td>'+
+      '<td style="padding:8px 12px;text-align:center">'+r.total_rows+'</td>'+
+      '<td style="padding:8px 12px;text-align:center;color:var(--err);font-weight:600">'+r.error_rows+'</td>'+
+      '<td style="padding:8px 12px;text-align:center"><span class="badge '+cls+'">'+r.status.toUpperCase()+'</span></td></tr>';
+  }).join('');
+  bdiv.innerHTML='<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:#1e293b;font-size:11px;color:#94a3b8;text-transform:uppercase;">'+
+    '<th style="padding:8px 12px;text-align:left">Template</th><th style="padding:8px 12px;text-align:left">Sheet</th>'+
+    '<th style="padding:8px 12px;text-align:center">Tổng dòng</th><th style="padding:8px 12px;text-align:center">Dòng lỗi</th>'+
+    '<th style="padding:8px 12px;text-align:center">Status</th></tr></thead><tbody>'+brows+'</tbody></table>';
+  document.getElementById('r-tbl-title').textContent='Chi tiết lỗi — tất cả sheets ('+allErrors.length+' lỗi)';
+  document.getElementById('up-results').style.display='block';
+  var card=document.getElementById('r-tbl').closest('.card');
+  card.insertBefore(bdiv,card.querySelector('.filter-bar')?card.querySelector('.filter-bar').parentElement:card.firstChild);
+  rFilter='all';rPage=1;
+  document.querySelectorAll('#page-upload .ftab').forEach(function(t,i){t.classList.toggle('on',i===0);});
+  renderResultTable();
+  setTimeout(function(){document.getElementById('up-results').scrollIntoView({behavior:'smooth'});},100);
+}
+
+function _renderBanner(status,sub,excelOut){
+  var smap={pass:'PASS — Dữ liệu sạch',warning:'WARNING — Có vấn đề',fail:'FAIL — Cần xử lý lỗi'};
+  document.getElementById('up-banner').className='sb-banner '+status;
+  document.getElementById('up-st').textContent=smap[status]||status;
+  document.getElementById('up-ss').textContent=sub;
+  document.getElementById('up-output-info').textContent=excelOut?'Excel output đã tạo':'';
+}
+
+function filterResults(){
+  var q=document.getElementById('r-search').value.toLowerCase();
+  filteredErrors=allErrors.filter(function(e){
+    return(rFilter==='all'||e.severity===rFilter)&&
+      (!q||[e.column_name,e.error_type,e.message,String(e.row_id)].some(function(x){return String(x).toLowerCase().includes(q);}));
+  });
+  rPage=1;renderResultTable();
+}
+function setRFilter(t,el){
+  document.querySelectorAll('#page-upload .ftab').forEach(function(x){x.classList.remove('on');});
+  el.classList.add('on');rFilter=t;filterResults();
+}
+function renderResultTable(){
+  var w=document.getElementById('r-tbl');
+  if(!filteredErrors.length){w.innerHTML='<div class="empty"><div class="empty-ico">✅</div>Không có lỗi!</div>';document.getElementById('r-pg').innerHTML='';return;}
+  var s=(rPage-1)*RPAGE,pg=filteredErrors.slice(s,s+RPAGE);
+  var hasSheet=pg.some(function(e){return e._sheet;});
+  var rows=pg.map(function(e){
+    var long=e.message.length>70;
+    var msg=long
+      ?'<div><div class="msg-short">'+esc(e.message)+'</div><div class="msg-full">'+esc(e.message)+'</div><button class="msg-toggle" onclick="toggleMsg(this)">Xem thêm</button></div>'
+      :'<span style="color:var(--muted)">'+esc(e.message)+'</span>';
+    return '<tr>'+(hasSheet?'<td><span class="badge badge-info" style="font-size:10px">'+esc(e._sheet||'')+'</span></td>':'')+
+      '<td style="font-weight:700;color:var(--accent)">'+(e.row_id||'—')+'</td>'+
+      '<td style="font-weight:600">'+esc(e.column_name)+'</td>'+
+      '<td><span class="badge badge-info" style="font-size:10px">'+esc(e.error_type)+'</span></td>'+
+      '<td style="font-size:10px;color:var(--muted)">'+esc(e.rule_id||'')+'</td>'+
+      '<td><span class="badge '+(e.severity==='critical'?'badge-err':'badge-warn')+'">'+(e.severity==='critical'?'Critical':'Warning')+'</span></td>'+
+      '<td>'+msg+'</td></tr>';
+  }).join('');
+  var th=hasSheet?'<th>Sheet</th>':'';
+  w.innerHTML='<table><thead><tr>'+th+'<th>Dòng</th><th>Tên cột</th><th>Loại lỗi</th><th>Rule ID</th><th>Mức độ</th><th style="min-width:200px">Mô tả</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  var tp=Math.ceil(filteredErrors.length/RPAGE),pg2=document.getElementById('r-pg');
+  if(tp<=1){pg2.innerHTML='';return;}
+  var h='<span class="pg-info">'+filteredErrors.length+' lỗi / Trang '+rPage+'/'+tp+'</span>';
+  if(rPage>1)h+='<button class="pgb" onclick="rGo('+(rPage-1)+')">‹</button>';
+  for(var i=Math.max(1,rPage-2);i<=Math.min(tp,rPage+2);i++)
+    h+='<button class="pgb '+(i===rPage?'on':'')+'" onclick="rGo('+i+')">'+i+'</button>';
+  if(rPage<tp)h+='<button class="pgb" onclick="rGo('+(rPage+1)+')">›</button>';
+  pg2.innerHTML=h;
+}
+function rGo(p){rPage=p;renderResultTable();}
+function toggleMsg(btn){var c=btn.parentElement;var sh=c.querySelector('.msg-short'),fu=c.querySelector('.msg-full');var ex=fu.style.display==='block';sh.style.display=ex?'':'none';fu.style.display=ex?'none':'block';btn.textContent=ex?'Xem thêm':'Thu gọn';}
+function showUpLoading(v,msg){document.getElementById('up-ld').style.display=v?'block':'none';document.getElementById('btn-validate').style.display=v?'none':'flex';if(msg)document.getElementById('up-ld-txt').textContent=msg;}
+function resetUpload(){
+  pendingFile=null;pendingPath=null;
+  document.getElementById('dz-name').textContent='Kéo thả file .xlsx vào đây';
+  document.getElementById('dz').style.background='';
+  document.getElementById('dz').style.borderColor='';
+  document.getElementById('file-path-input').value='';
+  document.getElementById('file-path-input').parentElement.style.display='none';
+  document.getElementById('btn-validate').disabled=true;
+  document.getElementById('up-results').style.display='none';
+  document.getElementById('fi').value='';
+  var bd=document.getElementById('all-breakdown');if(bd)bd.remove();
+}
+
+// ════════════════════════════════════════════════════════
+// CUSTOM DROPDOWN
+// ════════════════════════════════════════════════════════
+function toggleDD(id){
+  var trig=document.getElementById('cdd-'+id+'-trig');
+  var menu=document.getElementById('cdd-'+id+'-menu');
+  var isOpen=menu.classList.contains('open');
+  closeAllDD();
+  if(!isOpen){
+    menu.classList.add('open');
+    trig.classList.add('open');
+  }
+}
+function closeAllDD(){
+  document.querySelectorAll('.cdd-trig').forEach(function(el){el.classList.remove('open');});
+  document.querySelectorAll('.cdd-menu').forEach(function(el){el.classList.remove('open');});
+}
+function selectDD(id,val,label){
+  var hidden=document.getElementById('up-'+id);
+  if(hidden) hidden.value=val;
+  var labelEl=document.getElementById('cdd-'+id+'-label');
+  if(labelEl) labelEl.textContent=label;
+  var menu=document.getElementById('cdd-'+id+'-menu');
+  if(menu){
+    menu.querySelectorAll('.cdd-item').forEach(function(el){el.classList.remove('selected');});
+    var items=menu.querySelectorAll('.cdd-item');
+    for(var i=0;i<items.length;i++){
+      if(items[i].getAttribute('data-val')===val||items[i].textContent.trim()===label){
+        items[i].classList.add('selected');
+        break;
+      }
+    }
+  }
+  closeAllDD();
+  if(id==='method'){
+    var method=val;
+    document.getElementById('file-path-input').parentElement.style.display=method==='path'?'':'none';
+  }
+}
+function renderTemplateDD(options, selected){
+  var menu=document.getElementById('cdd-template-menu');
+  if(!menu)return;
+  menu.innerHTML=options.map(function(o){
+    var isSelected=o.value===selected;
+    return '<div class="cdd-item'+(isSelected?' selected':'')+'" '+
+      'onclick="selectDD(\'template\',\''+o.value.replace(/'/g,"\\'")+'\',\''+o.label.replace(/'/g,"\\'")+'\')">'+
+      o.label+'</div>';
+  }).join('');
+  var sel=options.find(function(o){return o.value===selected;});
+  var labelEl=document.getElementById('cdd-template-label');
+  if(labelEl) labelEl.textContent=sel?sel.label:options[0]?options[0].label:'';
+}
+// Close on outside click
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.cdd')) closeAllDD();
+});
+
+// ════════════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════════════
+function showToast(msg,type){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show '+(type||'ok');
+  setTimeout(function(){t.classList.remove('show');},4000);
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ════════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════════
+window.onload = function() {
+  // Initialize file-path section visibility
+  document.getElementById('file-path-input').parentElement.style.display='none';
+  checkAPI().then(function(ok){if(ok)loadConfigFromAPI();}).catch(function(){setOnline(false);});
+};
+</script>
+</body>
+</html>

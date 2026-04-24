@@ -1,0 +1,1454 @@
+{
+  "version": "2.0",
+  "templates": {
+    "HR": {
+      "columns": [
+        {
+          "name": "Industry Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Industry Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "AUE Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Year",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Month",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Applicant Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Code (Client)",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Code (Company)",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Full Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee English Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Gender Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Gender",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Date of Birth",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Phone Number",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Email",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old ID Card Number",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Card Number",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Date",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Place Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Place",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Permanent Address",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Temporary Address",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Place of Birth",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Place of Origin",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Age",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Age Group",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Ethnicity Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Ethnicity",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Religion Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Religion",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Tax Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Dependent",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI At Other Company [1:Yes, 0:No]",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI Join Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI Authority Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI Authority Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI Book Number",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Hospital Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Hospital Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Marital Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Marital Status",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Education Level Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Education Level",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Emergency Contact (Name+Relationship+Phone Number)",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Vehicle Type",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Vehicle License Plate",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Functional Block",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Department Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Department",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Position Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Position",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Position Group",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Work Level (WL)",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Channel Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Channel",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager Code",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager PhoneNumber",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager Email",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager PhoneNumber",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager Email",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Region Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Region",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Area Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Area",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Shop ID",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Store Code",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Store Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old Address",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old Province Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old Province",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old District Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old District",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old Ward Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old Ward",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "New Address",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "New Province Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "New Province",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "New Ward Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "New Ward",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Overview Image",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Status Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Status",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Join Date (Company)",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Join Date (Client)",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Probation Start Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Probation End Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Working Status Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Working Status",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Maternity leave start date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Maternity leave end date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Last Working Day",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Resign Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Resign Reason",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Resign Reason Group",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Handover Status",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Seniority (Year)",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Type",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Number",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Signing No",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Duration (Month)",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Sign Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract End Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Release Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Contract Remark",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Bank Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Bank Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Bank Account Number",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Bank Branch Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Bank Branch",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Profile Photo (3x4)",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Profile Image",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Card Front Image",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Card Back Image",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Degree Certificate Image 1",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Degree Certificate Image 2",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Portrait Photo 1",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Portrait Photo 2",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Health Check Certificate 1",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Health Check Certificate 2",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "CV_File_1",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "CV_File_2",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Source",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "HR Note",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Update HR Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Updated HR By",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        }
+      ],
+      "rules": [
+        {
+          "id": "hr_r1",
+          "type": "no_future_date",
+          "scope": "column",
+          "column": "Date of Birth",
+          "priority": 1,
+          "severity": "critical",
+          "enabled": true,
+          "params": {},
+          "message": null
+        }
+      ]
+    },
+    "Payroll": {
+      "columns": [
+        {
+          "name": "Industry Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Industry Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "AUE Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Year",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Month",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Applicant Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Code (Client)",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Code (Company)",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Full Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee English Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Gender Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Gender",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Date of Birth",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Phone Number",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Employee Email",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Old ID Card Number",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Card Number",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Date",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Place Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "ID Issue Place",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Standard Working Days",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Paid Days",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Annual Leave",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Basic Salary",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Basic Salary by Paid Days",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Position Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Responsibility Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Skill Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Meal Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Travel Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Phone Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Housing Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Other Allowance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total Allowance",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "KPI Bonus",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Bonus",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Performance Bonus",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Sales Incentive",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Overtime",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total Bonus",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Backpay",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Refund",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Training Reimbursement",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Travel Reimbursement",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Other Reimbursement",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Correction",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Gross Income",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Social Insurance",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Health Insurance",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Unemployment Insurance",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total SHUI (Employee)",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "PIT",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Salary Advance",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Penalty",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Other Deduction",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total Deduction",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Net Salary",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "SI Employer",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "HI Employer",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "UI Employer",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total SHUI (Employer)",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Training Cost",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Other Benefit",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Company Payroll Cost",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Payroll Note",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Update Payroll Date",
+          "data_type": "date",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Updated Payroll By",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        }
+      ],
+      "rules": [
+        {
+          "id": "payroll_r1",
+          "type": "no_future_date",
+          "scope": "column",
+          "column": "Date of Birth",
+          "priority": 1,
+          "severity": "critical",
+          "enabled": true,
+          "params": {},
+          "message": null
+        }
+      ]
+    },
+    "HC Plan": {
+      "columns": [
+        {
+          "name": "Industry Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Industry Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Service Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Project Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "AUE Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Year",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Report Month",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "From date",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "To date",
+          "data_type": "date",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager Code",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 1 Manager Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Level 2 Manager Name",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Area Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Area",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Shop Type Name Code",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Shop Type Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Store Code",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Store Name",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Position",
+          "data_type": "text",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "HC Plan",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "HC Current",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Will Resign",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Vacant",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Pending Onboarding",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Recruiting",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Voluntary",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Involuntary",
+          "data_type": "number",
+          "is_required": false,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "Total Leaver",
+          "data_type": "number",
+          "is_required": true,
+          "allow_null_percent": 0
+        },
+        {
+          "name": "HC Plan Note",
+          "data_type": "text",
+          "is_required": false,
+          "allow_null_percent": 50
+        }
+      ],
+      "rules": []
+    }
+  }
+}

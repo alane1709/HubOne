@@ -1,0 +1,136 @@
+{
+  "total_templates": 3,
+  "generated_at": "2026-04-23T17:45:39.784823",
+  "sheets": {
+    "HR": {
+      "total_rows": 280,
+      "error_rows": 2,
+      "error_pct": 0.7,
+      "critical": 4,
+      "warnings": 1,
+      "status": "fail"
+    },
+    "Payroll": {
+      "total_rows": 51,
+      "error_rows": 0,
+      "error_pct": 0.0,
+      "critical": 4,
+      "warnings": 0,
+      "status": "fail"
+    },
+    "HC_Plan": {
+      "total_rows": 1,
+      "error_rows": 0,
+      "error_pct": 0.0,
+      "critical": 4,
+      "warnings": 0,
+      "status": "fail"
+    }
+  },
+  "errors": [
+    {
+      "row_id": 0,
+      "column_name": "Employee Code",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'Employee Code' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 188,
+      "column_name": "Phone Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Phone Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 245,
+      "column_name": "Phone Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Phone Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Phone Number",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Phone Number' có 0.7% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 0,
+      "column_name": "employee code",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Rule 'hr_r1': cột 'employee code' không tồn tại.",
+      "rule_id": "hr_r1"
+    },
+    {
+      "row_id": 0,
+      "column_name": "employee_id",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'employee_id' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "period",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'period' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "basic_salary",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'basic_salary' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "employee_id",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Rule 'payroll_r1': cột 'employee_id' không tồn tại.",
+      "rule_id": "payroll_r1"
+    },
+    {
+      "row_id": 0,
+      "column_name": "position_id",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'position_id' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "department",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'department' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "headcount_plan",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Cột 'headcount_plan' không tồn tại trong file.",
+      "rule_id": "sys_missing_col"
+    },
+    {
+      "row_id": 0,
+      "column_name": "position_id",
+      "error_type": "MISSING_COLUMN",
+      "severity": "critical",
+      "message": "Rule 'hc_plan_r1': cột 'position_id' không tồn tại.",
+      "rule_id": "hc_plan_r1"
+    }
+  ]
+}

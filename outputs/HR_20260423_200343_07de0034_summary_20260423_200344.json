@@ -1,0 +1,1732 @@
+{
+  "template": "HR",
+  "total_rows": 10,
+  "error_rows": 10,
+  "error_pct": 100.0,
+  "critical": 189,
+  "warnings": 26,
+  "status": "fail",
+  "generated_at": "2026-04-23T20:03:44.464433",
+  "errors": [
+    {
+      "row_id": 0,
+      "column_name": "AUE Code",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'AUE Code' có 100.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Report Year",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Report Year' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Report Year",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Report Year' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Report Year",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Report Year' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Report Year",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'202A' không phải số hợp lệ trong cột 'Report Year'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Report Month",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Report Month' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Report Month",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Report Month' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Report Month",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Report Month' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Employee Code (Client)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Code (Client)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Employee Code (Client)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Code (Client)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Employee Code (Client)",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Employee Code (Client)' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Employee Code (Company)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Code (Company)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Employee Code (Company)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Code (Company)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Employee Code (Company)",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Employee Code (Company)' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Employee Full Name",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Full Name' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Employee Full Name",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Full Name' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Employee Full Name",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Full Name' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Employee Full Name",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Employee Full Name' có 30.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Gender",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Gender' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Gender",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Gender' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Gender",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Gender' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Date of Birth",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Date of Birth' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Date of Birth",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Date of Birth' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2000-01-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Date of Birth'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Phone Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Phone Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Phone Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Phone Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Phone Number",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Phone Number' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Employee Email",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Email' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Employee Email",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Email' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Employee Email",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Employee Email' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 8,
+      "column_name": "ID Card Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Card Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "ID Card Number",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Card Number' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "ID Card Number",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'ID Card Number' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 11,
+      "column_name": "ID Issue Date",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Issue Date' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "ID Issue Date",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'ID Issue Date' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "ID Issue Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'ID Issue Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "ID Issue Place",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Issue Place' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 6,
+      "column_name": "ID Issue Place",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Issue Place' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "ID Issue Place",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'ID Issue Place' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "ID Issue Place",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'ID Issue Place' có 30.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Permanent Address",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Permanent Address' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Permanent Address",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Permanent Address' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Permanent Address",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Permanent Address' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Temporary Address",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Temporary Address' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Temporary Address",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Temporary Address' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Temporary Address",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Temporary Address' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Place of Birth",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Place of Birth' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Place of Birth",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Place of Birth' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Place of Birth",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Place of Birth' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Place of Origin",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Place of Origin' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Place of Origin",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Place of Origin' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Place of Origin",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Place of Origin' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 9,
+      "column_name": "SI At Other Company [1:Yes, 0:No]",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'yes' không phải số hợp lệ trong cột 'SI At Other Company [1:Yes, 0:No]'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-01-01 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "SI Join Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'SI Join Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Region",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Region' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Region",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Region' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Region",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Region' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Area",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Area' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Area",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Area' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Area",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Area' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Store Code",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Store Code' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Store Code",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Store Code' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Store Code",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Store Code' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Store Name",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Store Name' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Store Name",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Store Name' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Store Name",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Store Name' có 20.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Employee Status",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Employee Status' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Employee Status",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Employee Status' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Join Date (Company)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Join Date (Company)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Join Date (Company)",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Join Date (Company)' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-01-10 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Join Date (Company)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Company)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Join Date (Client)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Join Date (Client)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Join Date (Client)",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Join Date (Client)' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-01-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Join Date (Client)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Join Date (Client)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Probation Start Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation Start Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Probation End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Probation End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Maternity leave start date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave start date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Maternity leave end date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Maternity leave end date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-14 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Last Working Day",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Last Working Day'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-01-09 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-14 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Resign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Resign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Seniority (Year)",
+      "error_type": "NULL_REQUIRED",
+      "severity": "critical",
+      "message": "Cột 'Seniority (Year)' bắt buộc nhưng đang trống.",
+      "rule_id": "sys_null_required"
+    },
+    {
+      "row_id": 0,
+      "column_name": "Seniority (Year)",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'Seniority (Year)' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Seniority (Year)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'abc' không phải số hợp lệ trong cột 'Seniority (Year)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Contract Duration (Month)",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'12 tháng' không phải số hợp lệ trong cột 'Contract Duration (Month)'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Contract Sign Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Sign Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Contract End Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract End Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-03-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 7,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-07-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-01 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Contract Release Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Contract Release Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 0,
+      "column_name": "ID Card Back Image",
+      "error_type": "NULL_EXCEEDED",
+      "severity": "warning",
+      "message": "Cột 'ID Card Back Image' có 10.0% null (cho phép 0%).",
+      "rule_id": "sys_null_pct"
+    },
+    {
+      "row_id": 2,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-02-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 3,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-12-31 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 4,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-04-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-05-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 6,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-06-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-08-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 9,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-09-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 10,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-10-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 11,
+      "column_name": "Update HR Date",
+      "error_type": "WRONG_DATATYPE",
+      "severity": "critical",
+      "message": "'2024-11-15 00:00:00' không phải ngày hợp lệ trong cột 'Update HR Date'.",
+      "rule_id": "sys_datatype"
+    },
+    {
+      "row_id": 5,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_FORMAT",
+      "severity": "critical",
+      "message": "'2001/02/29' không parse được thành ngày trong cột 'Date of Birth'.",
+      "rule_id": "hr_r1"
+    },
+    {
+      "row_id": 8,
+      "column_name": "Date of Birth",
+      "error_type": "WRONG_FORMAT",
+      "severity": "critical",
+      "message": "'not-a-date' không parse được thành ngày trong cột 'Date of Birth'.",
+      "rule_id": "hr_r1"
+    }
+  ]
+}

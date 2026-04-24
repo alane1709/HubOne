@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataValid — Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --card-hover: #26334a;
+  --border: #334155;
+  --accent: #3b82f6;
+  --accent2: #8b5cf6;
+  --accent-g: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --err: #ef4444;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --hint: #475569;
+  --sidebar: 240px;
+  --f: 'Inter','Segoe UI',system-ui,sans-serif;
+  --r: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--f); font-size: 14px; display: flex; min-height: 100vh; }
+
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--hint); }
+
+/* ── Sidebar ── */
+.sidebar { width: var(--sidebar); background: var(--card); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top:0; left:0; height: 100vh; z-index: 100; }
+.sidebar-logo { padding: 24px 22px 20px; border-bottom: 1px solid var(--border); }
+.sidebar-logo .name { font-size: 18px; font-weight: 800; letter-spacing: -.4px; }
+.sidebar-logo .name em { background: var(--accent-g); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-style: normal; }
+.sidebar-logo .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.nav { padding: 14px 12px; flex:1; display:flex; flex-direction:column; gap:3px; }
+.nav-item { display: flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: var(--r); cursor: pointer; color: var(--muted); font-size: 13px; font-weight: 500; transition: all .15s; border: none; background: none; width: 100%; text-align: left; text-decoration: none; }
+.nav-item:hover { background: rgba(255,255,255,.06); color: var(--text); }
+.nav-item.active { background: rgba(59,130,246,.15); color: var(--accent); }
+.nav-item .ico { font-size: 17px; width:22px; text-align:center; flex-shrink:0; }
+.nav-item .label { flex:1; }
+.sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--hint); }
+.sidebar-footer .api-dot { width:7px; height:7px; border-radius:50%; background: var(--ok); display:inline-block; margin-right:5px; animation: pulse 2s infinite; vertical-align: middle; }
+.sidebar-footer .api-dot.off { background: var(--err); animation:none; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── Main ── */
+.main { margin-left: var(--sidebar); flex:1; display:flex; flex-direction:column; min-height:100vh; }
+.topbar { background: rgba(30,41,59,.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 28px; height: 60px; display: flex; align-items:center; justify-content:space-between; position: sticky; top: 0; z-index: 99; }
+.topbar-title { font-size: 15px; font-weight: 700; }
+.topbar-right { display:flex; align-items:center; gap:12px; font-size:12px; }
+.content { padding: 24px 28px; flex:1; }
+
+/* ── Card ── */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 22px; transition: border-color .2s; }
+.card:hover { border-color: var(--hint); }
+.card-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+
+/* ── Buttons ── */
+.btn { padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--f); display: inline-flex; align-items:center; gap:7px; transition: all .15s; }
+.btn-p { background: var(--accent); color: #fff; }
+.btn-p:hover { background: #2563eb; }
+.btn-p:disabled { opacity: .5; cursor:not-allowed; }
+.btn-o { background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--muted); }
+.btn-o:hover { border-color: var(--accent); color: var(--accent); background: rgba(59,130,246,.08); }
+.btn-success { background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3); color: var(--ok); }
+.btn-success:hover { background: rgba(34,197,94,.2); }
+.btn-danger { background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.3); color: var(--err); }
+.btn-danger:hover { background: rgba(239,68,68,.2); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 7px; }
+
+/* ── Form Elements ── */
+.form-row { display:grid; gap:14px; margin-bottom:14px; }
+.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.field label { display:block; font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; margin-bottom:5px; }
+.field input, .field select, .field textarea { width:100%; background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--text); font-family: var(--f); font-size: 13px; outline: none; transition: border-color .15s; }
+.field input:focus, .field select:focus { border-color: var(--accent); }
+.field input::placeholder { color: var(--hint); }
+
+/* ── Drop Zone ── */
+.drop-zone { border: 2px dashed var(--border); border-radius: var(--r); padding: 40px; text-align: center; cursor: pointer; transition: all .2s; background: rgba(255,255,255,.03); }
+.drop-zone:hover, .drop-zone.over { border-color: var(--accent); background: rgba(59,130,246,.06); }
+.drop-zone .dz-ico { font-size: 48px; margin-bottom: 12px; line-height: 1; }
+.drop-zone h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.drop-zone p { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+
+/* ── Table ── */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r); }
+table { width:100%; border-collapse: collapse; }
+thead th { background: rgba(255,255,255,.04); padding: 10px 13px; font-size: 11px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--border); white-space: nowrap; text-align: left; }
+tbody td { padding: 11px 13px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: top; word-break: break-word; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: rgba(255,255,255,.03); }
+
+/* ── Badge ── */
+.badge { display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border-radius:99px; font-size:11px; font-weight:600; white-space:nowrap; }
+.badge-err { background: rgba(239,68,68,.15); color: var(--err); border: 1px solid rgba(239,68,68,.3); }
+.badge-warn { background: rgba(245,158,11,.15); color: var(--warn); border: 1px solid rgba(245,158,11,.3); }
+.badge-ok { background: rgba(34,197,94,.15); color: var(--ok); border: 1px solid rgba(34,197,94,.3); }
+.badge-info { background: rgba(59,130,246,.15); color: var(--accent); border: 1px solid rgba(59,130,246,.3); }
+
+/* ── Status Banner ── */
+.sb-banner { border-radius: var(--r); padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+.sb-banner.pass { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25); }
+.sb-banner.warning { background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.25); }
+.sb-banner.fail { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.25); }
+.sb-banner .st { font-size: 18px; font-weight: 800; }
+.sb-banner.pass .st { color: var(--ok); }
+.sb-banner.warning .st { color: var(--warn); }
+.sb-banner.fail .st { color: var(--err); }
+
+/* ── Config rows ── */
+.cfg-row { align-items:center; padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.cfg-row:hover { background: rgba(255,255,255,.03); }
+
+/* ── Filter & Tabs ── */
+.filter-bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+.search-box { background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 8px; padding: 8px 13px; color: var(--text); font-family: var(--f); font-size: 13px; outline: none; width: 220px; transition: border-color .2s; }
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,.15); }
+.search-box::placeholder { color: var(--hint); }
+.ftab { padding: 6px 13px; border-radius: 7px; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-family: var(--f); font-weight: 500; transition: all .15s; }
+.ftab:hover { border-color: var(--accent); color: var(--accent); }
+.ftab.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── Pagination ── */
+.pg { display:flex; gap:5px; align-items:center; margin-top:14px; justify-content:flex-end; }
+.pgb { padding: 5px 11px; border-radius: 6px; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-family: var(--f); font-size: 12px; cursor: pointer; font-weight: 500; transition: all .15s; }
+.pgb:hover, .pgb.on { border-color: var(--accent); color: var(--accent); background: rgba(59,130,246,.08); }
+.pg-info { font-size: 12px; color: var(--muted); margin-right: 4px; }
+
+/* ── Message ── */
+.msg-short { display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; color: var(--muted); }
+.msg-full { display:none; color: var(--muted); white-space: pre-wrap; }
+.msg-toggle { font-size: 11px; color: var(--accent); cursor:pointer; font-weight:600; background:none; border:none; padding:2px 0; font-family: var(--f); }
+
+/* ── Loading ── */
+.ld { display:none; text-align:center; padding:32px; color: var(--muted); }
+.ld.show { display:block; }
+.spin { width:28px; height:28px; border-radius:50%; border:3px solid var(--border); border-top-color: var(--accent); animation:spin .7s linear infinite; margin:0 auto 12px; }
+@keyframes spin { to { transform: rotate(360deg) } }
+
+/* ── Empty ── */
+.empty { text-align:center; padding:40px; color: var(--muted); font-size:13px; }
+.empty-ico { font-size:40px; margin-bottom:8px; opacity:.5; }
+
+/* ── Modal ── */
+.modal-overlay { display:none; position:fixed; inset:0; background: rgba(0,0,0,.5); z-index:200; align-items:center; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 500px; max-width:90vw; max-height:85vh; overflow-y:auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+.modal-title { font-size: 16px; font-weight: 700; }
+.modal-close { width:30px; height:30px; border:none; background: rgba(255,255,255,.08); border-radius:6px; cursor:pointer; font-size:16px; color: var(--text); }
+.modal-close:hover { background: rgba(255,255,255,.14); }
+.modal-footer { display:flex; gap:8px; justify-content:flex-end; margin-top:20px; padding-top:16px; border-top:1px solid var(--border); }
+
+/* ── Tabs ── */
+.tab-btn { padding:8px 16px; border:none; background:none; cursor:pointer; font-size:13px; font-weight:500; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-2px; font-family:var(--f); transition:all .15s; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+/* ── Toast ── */
+.toast { position:fixed; bottom:24px; right:24px; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 18px; font-size:13px; z-index:9999; max-width:360px; box-shadow:0 8px 24px rgba(0,0,0,.3); transform:translateY(80px); opacity:0; transition:all .3s ease; }
+.toast.show { transform:translateY(0); opacity:1; }
+.toast.ok { border-color: var(--ok); }
+.toast.err { border-color: var(--err); }
+
+/* ── Input / Select ── */
+.inp { background:rgba(255,255,255,.06); border:1px solid var(--border); border-radius:6px; padding:6px 8px; font-size:12px; font-family:var(--f); color:var(--text); outline:none; width:100%; box-sizing:border-box; transition:border-color .15s; }
+.inp:focus { border-color: var(--accent); }
+select { -webkit-appearance:auto; -moz-appearance:auto; appearance:auto; padding-right:28px !important; }
+.rr-select { -webkit-appearance:auto; appearance:auto; padding-right:28px !important; }
+
+/* ── Offline Banner ── */
+.offline-banner { background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.25); border-radius:10px; padding:14px 18px; margin-bottom:18px; display:none; align-items:center; gap:10px; }
+.offline-banner.show { display:flex; }
+
+/* ── Page ── */
+.page { display:none; }
+.page.active { display:block; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:translateY(0) } }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="name">Data<em>Valid</em> <span style="font-size:10px;background:rgba(34,197,94,.15);color:var(--ok);border-radius:4px;padding:2px 6px;font-weight:600;vertical-align:middle;border:1px solid rgba(34,197,94,.3)">LIVE</span></div>
+    <div class="sub">Connected to Python API</div>
+  </div>
+  <nav class="nav">
+    <a href="dashboard.html" class="nav-item"><span class="ico">📊</span><span class="label">Dashboard</span></a>
+    <a href="upload.html" class="nav-item"><span class="ico">⬆️</span><span class="label">Upload & Validate</span></a>
+    <a href="config.html" class="nav-item"><span class="ico">⚙️</span><span class="label">Config Manager</span></a>
+    <a href="reports.html" class="nav-item active"><span class="ico">📋</span><span class="label">Reports</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <span id="user-info" style="display:block;margin-bottom:4px;font-weight:600;"></span>
+    <span class="api-dot" id="api-dot"></span><span id="api-status">Connecting...</span>
+    <a href="login.html" class="nav-item" style="margin-top:8px;color:var(--err);padding:6px 8px;font-size:12px;"><span class="ico">🚪</span><span class="label">Logout</span></a>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Reports</div>
+    <div class="topbar-right">
+      <span style="font-size:12px;color:var(--muted)">API:</span>
+      <input id="api-url" style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:7px;padding:5px 10px;font-size:12px;font-family:var(--f);width:200px;outline:none;color:var(--text);" onchange="setAPI(this.value)" placeholder="http://localhost:8000">
+      <button class="btn btn-o btn-sm" onclick="checkAPI().then(function(ok){if(ok)loadConfigFromAPI();})">🔌 Reconnect</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="offline-banner" id="offline-banner">
+      <span style="font-size:20px">⚠️</span>
+      <div><strong>Không kết nối được API</strong><br><span style="font-size:12px;color:var(--muted)">Kiểm tra server Python đang chạy tại địa chỉ trên</span></div>
+    </div>
+
+    <!-- REPORTS PAGE -->
+    <div class="page active" id="page-reports">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+        <div class="filter-bar" style="margin:0">
+          <input class="search-box" id="rep-search" placeholder="🔍 Tìm tên file..." oninput="filterReports()">
+          <button class="ftab on" onclick="setRepFilter('all',this)">Tất cả</button>
+          <button class="ftab" onclick="setRepFilter('pass',this)">✅ Pass</button>
+          <button class="ftab" onclick="setRepFilter('warning',this)">⚠ Warning</button>
+          <button class="ftab" onclick="setRepFilter('fail',this)">❌ Fail</button>
+        </div>
+        <button class="btn btn-o btn-sm" onclick="clearHistory()">🗑 Xóa lịch sử</button>
+      </div>
+      <div id="rep-wrap"><div class="empty"><div class="empty-ico">📋</div>Chưa có báo cáo nào</div></div>
+    </div>
+  </div>
+</main>
+
+<!-- MODAL: Report Detail -->
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal" style="width:800px;max-width:95vw;">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-detail-title">Báo cáo</div>
+      <button class="modal-close" onclick="closeModal('modal-detail')">✕</button>
+    </div>
+    <div id="modal-detail-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Check login
+if(localStorage.getItem('dv_logged_in')!=='true'){
+  window.location.href='login.html';
+}
+
+// Show user info
+var user=localStorage.getItem('dv_user')||'admin';
+document.getElementById('user-info').textContent='User: '+user;
+
+// ════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════
+var API     = localStorage.getItem('dv_api') || 'http://localhost:8000';
+var CONFIG  = { version:'2.0', templates:{} };
+var HISTORY = JSON.parse(localStorage.getItem('dv_history_live')||'[]');
+var repFilterStatus='all';
+var CURRENT_PAGE='reports';
+
+document.getElementById('api-url').value = API;
+
+// ════════════════════════════════════════════════════════
+// API HELPERS
+// ════════════════════════════════════════════════════════
+function checkAPI(){
+  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},3000);
+  return fetch(API+'/',{signal:ctrl.signal})
+    .then(function(r){clearTimeout(timer);setOnline(r.ok);return r.ok;})
+    .catch(function(){clearTimeout(timer);setOnline(false);return false;});
+}
+function setOnline(on){
+  document.getElementById('api-dot').className='api-dot'+(on?'':' off');
+  document.getElementById('api-status').textContent=on?'API Connected':'API Offline';
+  document.getElementById('offline-banner').className='offline-banner'+(on?'':' show');
+}
+function setAPI(url){API=url.trim();localStorage.setItem('dv_api',API);}
+
+// ════════════════════════════════════════════════════════
+// CONFIG (minimal needed)
+// ════════════════════════════════════════════════════════
+function loadConfigFromAPI(){
+  return fetch(API+'/config')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      CONFIG=data;
+    })
+    .catch(function(){});
+}
+function getTemplates(){return CONFIG.templates||{};}
+
+// ════════════════════════════════════════════════════════
+// REPORTS
+// ════════════════════════════════════════════════════════
+function setRepFilter(t,el){
+  document.querySelectorAll('#page-reports .ftab').forEach(function(x){x.classList.remove('on');});
+  el.classList.add('on');repFilterStatus=t;filterReports();
+}
+function filterReports(){
+  var q=document.getElementById('rep-search').value.toLowerCase();
+  renderReports(HISTORY.slice().reverse().filter(function(h){
+    return(repFilterStatus==='all'||h.status===repFilterStatus)&&(!q||h.filename.toLowerCase().includes(q));
+  }));
+}
+function renderReports(data){
+  var items=data!==undefined?data:HISTORY.slice().reverse();
+  var wrap=document.getElementById('rep-wrap');
+  if(!items.length){wrap.innerHTML='<div class="empty"><div class="empty-ico">📋</div>Chưa có báo cáo nào</div>';return;}
+  var rows=items.map(function(h){
+    var sc=h.status==='fail'?'var(--err)':h.status==='warning'?'var(--warn)':'var(--ok)';
+    var cls=h.status==='pass'?'badge-ok':h.status==='fail'?'badge-err':'badge-warn';
+    return '<tr>'+
+      '<td style="font-weight:600">'+esc(h.filename)+'</td>'+
+      '<td><span class="badge badge-info">'+esc(h.template)+'</span></td>'+
+      '<td>'+h.total_rows+'</td>'+
+      '<td>'+h.error_rows+'</td>'+
+      '<td style="font-weight:600;color:'+sc+'">'+h.error_pct+'%</td>'+
+      '<td><span class="badge '+cls+'">'+(h.status==='pass'?'Pass':h.status==='fail'?'Fail':'Warning')+'</span></td>'+
+      '<td style="color:var(--muted);font-size:12px">'+(h.created_at||'')+'</td>'+
+      '<td><button class="btn btn-o btn-sm" style="font-size:11px;padding:4px 8px" onclick="viewReport('+h.id+')">Xem</button></td></tr>';
+  }).join('');
+  wrap.innerHTML='<div class="tbl-wrap"><table><thead><tr>'+
+    '<th>File</th><th>Template</th><th>Tổng dòng</th><th>Dòng lỗi</th>'+
+    '<th>Lỗi%</th><th>Status</th><th>Thời gian</th><th></th>'+
+    '</tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+function viewReport(id){
+  var h=HISTORY.filter(function(x){return x.id===id;})[0];if(!h)return;
+  var errors=h.errors||[];
+  document.getElementById('modal-detail-title').textContent='Báo cáo: '+h.filename;
+  var kpis=[
+    ['Score',Math.max(0,100-h.error_pct).toFixed(0)+'%','var(--accent)'],
+    ['Tổng dòng',h.total_rows,'var(--text)'],
+    ['Dòng lỗi',h.error_rows,'var(--err)'],
+    ['Critical',h.critical,'var(--warn)']
+  ];
+  var kpiHtml=kpis.map(function(k){
+    return '<div style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'+
+      '<div style="font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:4px">'+k[0]+'</div>'+
+      '<div style="font-size:22px;font-weight:800;color:'+k[2]+'">'+k[1]+'</div></div>';
+  }).join('');
+  var errRows=errors.slice(0,50).map(function(e){
+    return '<tr>'+
+      '<td style="font-weight:700;color:var(--accent)">'+(e.row_id||'—')+'</td>'+
+      '<td style="font-weight:600">'+esc(e.column_name)+'</td>'+
+      '<td><span class="badge badge-info" style="font-size:10px">'+esc(e.error_type)+'</span></td>'+
+      '<td style="font-size:10px;color:var(--muted)">'+esc(e.rule_id||'')+'</td>'+
+      '<td><span class="badge '+(e.severity==='critical'?'badge-err':'badge-warn')+'">'+(e.severity==='critical'?'Critical':'Warning')+'</span></td>'+
+      '<td style="color:var(--muted);font-size:12px">'+esc(e.message)+'</td></tr>';
+  }).join('');
+  document.getElementById('modal-detail-body').innerHTML=
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;">'+kpiHtml+'</div>'+
+    (h.excel_output?'<div style="margin-bottom:12px;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--muted)">Excel: <code style="color:var(--text)">'+esc(h.excel_output)+'</code></div>':'')+
+    (errors.length
+      ?'<div class="tbl-wrap"><table><thead><tr><th>Dòng</th><th>Cột</th><th>Loại lỗi</th><th>Rule ID</th><th>Mức độ</th><th>Mô tả</th></tr></thead><tbody>'+errRows+'</tbody></table>'+
+          (errors.length>50?'<div style="text-align:center;padding:8px;font-size:12px;color:var(--muted)">... và '+(errors.length-50)+' lỗi khác</div>':'')+
+          '</div>'
+      :'<div class="empty"><div class="empty-ico">✅</div>Không có lỗi!</div>');
+  openModal('modal-detail');
+}
+function clearHistory(){
+  if(!confirm('Xoá toàn bộ lịch sử?'))return;
+  HISTORY=[];localStorage.removeItem('dv_history_live');
+  renderReports();showToast('Đã xoá lịch sử','ok');
+}
+
+// ════════════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════════════
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function showToast(msg,type){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show '+(type||'ok');
+  setTimeout(function(){t.classList.remove('show');},4000);
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ════════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════════
+window.onload = function() {
+  try{renderReports();}catch(e){console.warn(e);}
+  checkAPI().then(function(ok){if(ok)loadConfigFromAPI();}).catch(function(){setOnline(false);});
+};
+</script>
+</body>
+</html>
