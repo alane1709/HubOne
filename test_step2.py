@@ -13,7 +13,7 @@ import sys
 import requests
 from pathlib import Path
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://hubone-m7rm.onrender.com"
 
 # ══════════════════════════════════════════════════════
 # ✏️  ĐỔI PATH Ở ĐÂY — chỉ cần sửa 1 chỗ này thôi!

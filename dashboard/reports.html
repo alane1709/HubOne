@@ -215,7 +215,7 @@ select { -webkit-appearance:auto; -moz-appearance:auto; appearance:auto; padding
     <div class="topbar-title" id="topbar-title">Reports</div>
     <div class="topbar-right">
       <span style="font-size:12px;color:var(--muted)">API:</span>
-      <input id="api-url" style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:7px;padding:5px 10px;font-size:12px;font-family:var(--f);width:200px;outline:none;color:var(--text);" onchange="setAPI(this.value)" placeholder="http://localhost:8000">
+      <input id="api-url" style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:7px;padding:5px 10px;font-size:12px;font-family:var(--f);width:200px;outline:none;color:var(--text);" onchange="setAPI(this.value)" placeholder="https://hubone-m7rm.onrender.com">
       <button class="btn btn-o btn-sm" onclick="checkAPI().then(function(ok){if(ok)loadConfigFromAPI();})">🔌 Reconnect</button>
     </div>
   </div>
@@ -269,7 +269,7 @@ document.getElementById('user-info').textContent='User: '+user;
 // ════════════════════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════════════════════
-var API     = localStorage.getItem('dv_api') || 'http://localhost:8000';
+var API     = localStorage.getItem('dv_api') || 'https://hubone-m7rm.onrender.com';
 var CONFIG  = { version:'2.0', templates:{} };
 var HISTORY = JSON.parse(localStorage.getItem('dv_history_live')||'[]');
 var repFilterStatus='all';
